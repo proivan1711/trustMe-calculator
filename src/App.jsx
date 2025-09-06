@@ -10,7 +10,8 @@ const jokerResponses = [
 export default function App() {
   useEffect(() => {
     function handleKeyUp(e) {
-      const el = document.getElementById(e.key.toLowerCase());
+      let el = document.getElementById(e.key.toLowerCase());
+      if (e.key.toLowerCase() === "enter") el = document.getElementById("=");
       if (!el) return;
       el.focus();
       el.click();
