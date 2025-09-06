@@ -3,7 +3,7 @@ import { evaluate } from "mathjs";
 
 const jokerResponses = [
   "Ha, ha, ha... WRONG!",
-  "Math is going to save you",
+  "Math isn't going to save you",
   "Math doesn't love you!",
 ];
 
@@ -73,7 +73,7 @@ function CalcKeys({ setCalcOperations, calcOperations }) {
           onClick={() => setCalcOperations(calcOperations + "-")}
           className="text-7xl"
         >
-          -{/* <FontAwesomeIcon icon={faPlus} size="2x" /> */}
+          -
         </KeyBtn>
         <KeyBtn
           id="*"
@@ -87,7 +87,7 @@ function CalcKeys({ setCalcOperations, calcOperations }) {
           className="text-7xl"
           onClick={() => setCalcOperations(calcOperations + "+")}
         >
-          +{/* <FontAwesomeIcon icon={faMinus} size="2x" />*/}
+          +
         </KeyBtn>
         <KeyBtn id="c" onClick={() => setCalcOperations("")}>
           C
@@ -106,7 +106,7 @@ function CalcKeys({ setCalcOperations, calcOperations }) {
           className="text-7xl"
           onClick={() => setCalcOperations(calcOperations + ".")}
         >
-          .{/* <FontAwesomeIcon icon={faDivide} size="2x" /> */}
+          .
         </KeyBtn>
         <KeyBtn
           id="/"
@@ -145,7 +145,9 @@ function CalcKeys({ setCalcOperations, calcOperations }) {
         >
           0
         </KeyBtn>
-        <KeyBtn id="%">%</KeyBtn>
+        <KeyBtn id="%" onClick={() => setCalcOperations(calcOperations + "%")}>
+          %
+        </KeyBtn>
         <KeyBtn
           className="text-7xl"
           onClick={() => setCalcOperations(calcOperations + Math.PI)}
@@ -166,10 +168,8 @@ function CalcKeys({ setCalcOperations, calcOperations }) {
                 regex,
                 (_, nums) => `sqrt(${nums})`
               );
-              console.log(cleanedCalcOperations);
               setCalcOperations(evaluate(cleanedCalcOperations));
-            } catch(e) {
-              console.log(e);
+            } catch {
               setCalcOperations(
                 isChecked
                   ? jokerResponses[
@@ -186,7 +186,6 @@ function CalcKeys({ setCalcOperations, calcOperations }) {
           =
         </KeyBtn>
       </div>
-      <div id="operation-keys" className="mx-4"></div>
     </div>
   );
 }
@@ -196,7 +195,6 @@ function JokerBtn() {
     <div className="absolute top-0 left-0 p-2">
       <label>Joker mode: </label>
       <input type="checkbox" id="is-joker-btn" />
-      {/* <FontAwesomeIcon icon={faMultiply} size="4x" /> */}
     </div>
   );
 }
