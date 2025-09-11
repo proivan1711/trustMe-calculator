@@ -11,7 +11,7 @@ export default function App() {
   useEffect(() => {
     function handleKeyUp(e) {
       let el = document.getElementById(e.key.toLowerCase());
-      // if (e.key.toLowerCase() === "enter") el = document.getElementById("="); Some weird bug, will fix in future
+      if (e.key.toLowerCase() === "enter") return; // Some weird bug, will fix in future
       if (!el) return;
       el.focus();
       el.click();
